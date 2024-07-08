@@ -1,7 +1,7 @@
 # Import libraries
 
 import datetime
-import dB
+import database.dB as dB
 import os
 import sys
 from style.color import setcolor
@@ -13,7 +13,7 @@ os.system('cls')
 
 # Connect database / database name = task_database.db
 
-dB_connect, dB_cursor = dB.connect_dB('task_database.db')
+dB_connect, dB_cursor = dB.connect_dB('database/database.db')
 
 # Create table / table name = task_tbl
 

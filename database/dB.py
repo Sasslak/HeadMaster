@@ -33,8 +33,15 @@ def insert_data(connect,cursor,name_tbl,column,record,selector='*'):
 # Select data
 
 def select_data(cursor,name_tbl,selector='*'):
-    cursor.execute(f'SELECT {selector} FROM {name_tbl}')
-    return cursor.fetchall()
+    try:
+        cursor.execute(f'SELECT {selector} FROM {name_tbl}')
+        cursor.fetchall()
+        if cursor.fetchall() == []:
+            return 'Empty'
+        else:
+            return cursor.fetchall()
+    except Error:
+        print('Error to select data')
 
 # Remove data
 
