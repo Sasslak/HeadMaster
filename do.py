@@ -4,8 +4,8 @@ import datetime
 import dB
 import os
 import sys
-import time
-from color import setcolor
+from style.color import setcolor
+import style.loading as loading
 
 # Clear whole console first
 
@@ -21,18 +21,10 @@ dB_tblname = 'task_tbl'
 dB_feilds = '(id integer PRIMARY KEY autoincrement, task TEXT, datetime TEXT)'
 dB.create_table(dB_connect, dB_cursor, dB_tblname, dB_feilds)
 
-print('Starting HeadMaster')
-animation = "|/-\\"
-start_time = time.time()
-while True:
-    for i in range(4):
-        time.sleep(0.1)
-        sys.stdout.write("\r" + animation[i % len(animation)])
-        sys.stdout.flush()
-    if time.time() - start_time > 0.8:
-        break
-sys.stdout.write("\rDone!")
+# Loading start program
 
+print('Starting HeadMaster')
+loading.loading()
 
 # Starting program
 
@@ -101,6 +93,7 @@ These are Headmaster commands:
     remove <ID>    Remove a task from the list
     edit <ID>      Edit a task from the list
     cls            Clear the screen
+    restart        Restart the program
     exit           Exit the program'''
                   )
 
