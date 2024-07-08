@@ -5,7 +5,7 @@ import dB
 import os
 import sys
 import time
-from colorama import Fore
+from color import setcolor
 
 # Clear whole console first
 
@@ -48,25 +48,22 @@ while True:
             # Select all data in database
             dB_list = dB.select_data(dB_cursor, dB_tblname)
             if dB_list == []:
-                print(Fore.RED+'The list is empty!'+Fore.RESET)
+                setcolor('The list is empty!', 'red')
             else:
                 # Print header
-                print(Fore.CYAN+'ID    DATETIME\t\t   Tasks'+Fore.RESET)
-                print(Fore.RED+'--    --------------\t   -----'+Fore.RESET)
+                setcolor('ID    DATETIME\t\t   Tasks', 'cyan')
+                setcolor('--    --------------\t   -----', 'red')
                 # Loop for print annything in database
                 for tpl in dB_list:
                     # 01 - 09
                     if tpl[0] < 10:
-                        print(Fore.YELLOW +
-                              f'0{tpl[0]}    {tpl[2]}\t   {tpl[1]}'+Fore.RESET)
+                        setcolor(f'0{tpl[0]}    {tpl[2]}\t   {tpl[1]}', 'yellow')
                     # 10 - 99
                     elif tpl[0] < 100:
-                        print(Fore.YELLOW +
-                              f'{tpl[0]}    {tpl[2]}\t   {tpl[1]}'+Fore.RESET)
+                        setcolor(f'{tpl[0]}    {tpl[2]}\t   {tpl[1]}', 'yellow')
                     # 100 - inf
                     else:
-                        print(Fore.YELLOW +
-                              f'{tpl[0]}  {tpl[2]}\t   {tpl[1]}'+Fore.RESET)
+                        setcolor(f'{tpl[0]}  {tpl[2]}\t   {tpl[1]}', 'yellow')
 
         # Add task to database
 
@@ -105,9 +102,7 @@ These are Headmaster commands:
     edit <ID>      Edit a task from the list
     cls            Clear the screen
     exit           Exit the program'''
-            )
-
-
+                  )
 
         # Clear screen with command
 
