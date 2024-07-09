@@ -6,6 +6,7 @@ import os
 import sys
 from style.color import setcolor
 import style.loading as loading
+import actions
 
 # Clear whole console first
 
@@ -39,48 +40,25 @@ while True:
         case 'list' | 'show' | 'tasks':
             # Select all data in database
             dB_list = dB.select_data(dB_cursor, dB_tblname)
-            if dB_list == []:
-                setcolor('The list is empty!', 'red')
-            else:
-                # Print header
-                setcolor('ID    DATETIME\t\t   Tasks', 'cyan')
-                setcolor('--    --------------\t   -----', 'red')
-                # Loop for print annything in database
-                for tpl in dB_list:
-                    # 01 - 09
-                    if tpl[0] < 10:
-                        setcolor(f'0{tpl[0]}    {tpl[2]}\t   {tpl[1]}', 'yellow')
-                    # 10 - 99
-                    elif tpl[0] < 100:
-                        setcolor(f'{tpl[0]}    {tpl[2]}\t   {tpl[1]}', 'yellow')
-                    # 100 - inf
-                    else:
-                        setcolor(f'{tpl[0]}  {tpl[2]}\t   {tpl[1]}', 'yellow')
+            # Print list
+            actions.list(dB_list)
 
         # Add task to database
 
         case 'add' | 'insert':
-            task = input('Enter your task: ').lower()
-            time = datetime.datetime.now()
-            # Set dB column variable for select all column exept id column because the id is autoincrement
-            dB_column = '(task, datetime)'
-            # Change input data to a tuple for enter easier data in database
-            dB_record = (
-                task, f'{time.day}/{time.month}/{time.year}-{time.hour}:{time.minute}')
+            dB_column, dB_record = actions.add()
             dB.insert_data(dB_connect, dB_cursor,
-                           dB_tblname, dB_column, dB_record)
+                           dB_tblname, dB_column,dB_record)
 
         # Remove a row in database with ID or all
 
         case 'remove' | 'rm' | 'del' | 'delete':
-            rm = input('Enter ID or all: ').lower()
-            dB.remove_data(dB_connect, dB_cursor, dB_tblname, rm)
+            dB.remove_data(dB_connect, dB_cursor, dB_tblname, actions.remove())
 
         # Edit a data with ID
 
         case 'edit' | 'update':
-            id = input('Enter ID: ').lower()
-            edited_task = input('Enter new task: ').lower()
+            edited_task, id = actions.edit()
             dB.update_data(dB_connect, dB_cursor, dB_tblname,
                            'task', edited_task, id)
 

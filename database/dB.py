@@ -21,12 +21,11 @@ def insert_data(connect,cursor,name_tbl,column,record,selector='*'):
     try:
         if record[0] != '':
             cursor.execute(f"INSERT INTO {name_tbl} {column} VALUES(?,?)",record)
-            test_select = select_data(cursor,name_tbl,selector)
             print(Fore.GREEN+'Successfuly added!'+Fore.RESET)
         else:
-            print(Fore.RED+'Error! Add failed!(empty task)'+Fore.RESET)
+            print(Fore.RED+'Error! Add failed!(empty input)'+Fore.RESET)
     except Error:
-        print(Fore.RED+'Error! Add failed!'+Error+Fore.RESET)
+        print(Fore.RED+'Error! Add failed! '+Fore.RESET)
     finally:
         connect.commit()
 
@@ -35,13 +34,9 @@ def insert_data(connect,cursor,name_tbl,column,record,selector='*'):
 def select_data(cursor,name_tbl,selector='*'):
     try:
         cursor.execute(f'SELECT {selector} FROM {name_tbl}')
-        cursor.fetchall()
-        if cursor.fetchall() == []:
-            return 'Empty'
-        else:
-            return cursor.fetchall()
+        return cursor.fetchall()
     except Error:
-        print('Error to select data')
+        return (Fore.RED+'Error to select data!'+Fore.RESET)
 
 # Remove data
 
@@ -72,7 +67,7 @@ def update_data(connect,cursor,name_tbl,field,description,id):
             print(Fore.GREEN+'Successfuly edited!'+Fore.RESET)
         else:
             print(Fore.RED+'Error! Edit failed!'+Fore.RESET)
-    except:
+    except Error:
         print(Fore.RED+'Error! Edit failed!'+Fore.RESET)
     finally:
         connect.commit()

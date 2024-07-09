@@ -5,18 +5,19 @@ from colorama import Fore
 def setcolor(txt,color='white'):
     match color:
         case 'green':
-            print(Fore.GREEN+txt+Fore.RESET)
+            txt = (Fore.GREEN+txt+Fore.RESET)
         case 'red':
-            print(Fore.RED+txt+Fore.RESET)
+            txt = (Fore.RED+txt+Fore.RESET)
         case 'yellow':
-            print(Fore.YELLOW+txt+Fore.RESET)
+            txt = (Fore.YELLOW+txt+Fore.RESET)
         case 'cyan':
-            print(Fore.CYAN+txt+Fore.RESET)
+            txt = (Fore.CYAN+txt+Fore.RESET)
         case 'blue':
-            print(Fore.BLUE+txt+Fore.RESET)
+            txt = (Fore.BLUE+txt+Fore.RESET)
         case 'white':
-            print(Fore.WHITE+txt+Fore.RESET)
+            txt = (Fore.WHITE+txt+Fore.RESET)
         case 'black':
-            print(Fore.BLACK+txt+Fore.RESET)
+            txt = (Fore.BLACK+txt+Fore.RESET)
         case _:
-            print(txt)
+            pass
+    return txt
