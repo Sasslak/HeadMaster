@@ -4,13 +4,20 @@ import datetime
 import database.dB as dB
 import os
 import sys
+import platform
 from style.color import setcolor
 import style.loading as loading
 import actions
 
+
 # Clear whole console first
 
-os.system('cls')
+platform = platform.platform().lower()
+
+if 'windows' in platform:
+    os.system('cls')
+else:
+    os.system('clear')
 
 # Connect database / database name = task_database.db
 
@@ -78,7 +85,10 @@ These are Headmaster commands:
         # Clear screen with command
 
         case 'cls' | 'clear' | 'clean':
-            os.system('cls')
+            if 'windows' in platform:
+                os.system('cls')
+            else:
+                os.system('clear')
 
         # Restart program
 
