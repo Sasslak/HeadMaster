@@ -32,8 +32,7 @@ dB.create_table(dB_connect, dB_cursor, dB_tblname, dB_feilds)
 # Loading start program
 
 print('Starting HeadMaster')
-loading.loading()
-
+loading.loadi
 # Starting program
 
 while True:
@@ -75,8 +74,8 @@ while True:
 These are Headmaster commands:
     list           Show a list of tasks
     add            Add a task to the list
-    remove         Remove a task from the list
-    edit           Edit a task from the list
+    remove <ID>    Remove a task from the list
+    edit <ID>      Edit a task from the list
     cls            Clear the screen
     restart        Restart the program
     exit           Exit the program'''
