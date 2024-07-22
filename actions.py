@@ -18,7 +18,7 @@ def list(dB_list):
 
 def add():
     # Get values of task
-    task = input('Enter your task: ').lower()
+    task = input('Enter your task: ').capitalize()
     time = datetime.datetime.now()
     # Set dB column variable for select all column exept id column because the id is autoincrement
     dB_column = '(task, datetime)'
