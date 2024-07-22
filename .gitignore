@@ -3,4 +3,5 @@
 __pycache__/
 style/__pycache__/
 database/__pycache__/
+database/database.db/
 .vscode/
