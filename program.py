@@ -19,13 +19,13 @@ dB_connect, dB_cursor = dB.connect_dB('database/database.db')
 # Create table / table name = task_tbl
 
 dB_tblname = 'task_tbl'
-dB_feilds = '(id integer PRIMARY KEY autoincrement, task TEXT, datetime TEXT)'
+dB_feilds = '(id integer PRIMARY KEY autoincrement, date TEXT, time TEXT, category TEXT, task TEXT)'
 dB.create_table(dB_connect, dB_cursor, dB_tblname, dB_feilds)
 
 # Loading start program
 
 print('Starting HeadMaster')
-loading.loading()
+loading.start()
 
 # Starting program
 
@@ -37,7 +37,7 @@ while True:
 
         # Show everything in database
 
-        case 'list' | 'show' | 'tasks':
+        case 'list' | 'show' | 'tasks' | 'ls':
             # Select all data in database
             dB_list = dB.select_data(dB_cursor, dB_tblname)
             # Print list
@@ -68,8 +68,8 @@ while True:
 These are Headmaster commands:
     list           Show a list of tasks
     add            Add a task to the list
-    remove <ID>    Remove a task from the list
-    edit <ID>      Edit a task from the list
+    remove         Remove a task from the list
+    edit           Edit a task from the list
     cls            Clear the screen
     restart        Restart the program
     exit           Exit the program'''
@@ -89,3 +89,7 @@ These are Headmaster commands:
 
         case 'exit' | 'close' | 'quit':
             break
+        
+        case _:
+            print(setcolor('Ooops! Your word is wrong','red'))
+

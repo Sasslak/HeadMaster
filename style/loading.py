@@ -3,7 +3,7 @@ import time
 
 # Loading start program
 
-def loading(sleep=0.1, run_time=0.8):
+def start(sleep=0.1, run_time=0.8):
     animation = "|/-\\"
     start_time = time.time()
     while True:
@@ -14,3 +14,4 @@ def loading(sleep=0.1, run_time=0.8):
         if time.time() - start_time > run_time:
             break
     sys.stdout.write("\rDone!")
+    

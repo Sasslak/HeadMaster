@@ -18,9 +18,10 @@ def create_table(connect,cursor,name_tbl,fields_tbl):
 # Insert data
 
 def insert_data(connect,cursor,name_tbl,column,record,selector='*'):
+    cols_len = (len(record)*'?,')[:-1]
     try:
         if record[0] != '':
-            cursor.execute(f"INSERT INTO {name_tbl} {column} VALUES(?,?)",record)
+            cursor.execute(f"INSERT INTO {name_tbl} {column} VALUES({cols_len})",record)
             print(Fore.GREEN+'Successfuly added!'+Fore.RESET)
         else:
             print(Fore.RED+'Error! Add failed!(empty input)'+Fore.RESET)
